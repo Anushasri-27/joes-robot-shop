@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IProduct } from './product.model';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-catalog',
@@ -9,11 +10,10 @@ import { IProduct } from './product.model';
 export class CatalogComponent {
   //user defined datatype
   products: IProduct[] = [];
-  cart: IProduct[] = [];
   filter: string = '';
 
   //create constructor and initial product property
-  constructor() {
+  constructor(private cartService: CartService) {
     this.products = [
       {
         id: 1,
@@ -191,7 +191,9 @@ export class CatalogComponent {
     ];
   }
 
-  addToCart(product:IProduct) {}
+  addToCart(product :IProduct){
+     this.cartService.add(product);
+  }
 
   getFilteredProduct() {
     return this.filter === ''
