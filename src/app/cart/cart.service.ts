@@ -22,9 +22,11 @@ export class CartService {
   }
 
   add(product: IProduct) {
-    this.http.post('/api/cart', this.cart).subscribe(() => {
-      console.log('added' + product.name + 'to cart!');
-    });
+      const newCart = [...this.cart.getValue(),product] ;
+      this.cart.next(newCart);
+      this.http.post('/api/cart',newCart).subscribe(()=>{
+        console.log('added'+product.name+' to cart');
+      })
   }
 
   remove(product: IProduct) {
