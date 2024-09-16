@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IProduct } from './product.model';
-import { CartService } from '../cart.service';
+import { CartService } from '../cart/cart.service';
+import { ProductService } from './product.service';
 
 @Component({
   selector: 'app-catalog',
@@ -13,12 +14,20 @@ export class CatalogComponent {
   filter: string = '';
 
   //create constructor and initial product property
-  constructor(private cartService: CartService) {
-   
+  constructor(private cartService: CartService, private productSvs: ProductService) {
+
   }
 
-  addToCart(product :IProduct){
-     this.cartService.add(product);
+  ngOnInit() {
+
+      this.productSvs.getProduct().subscribe(products => {
+      this.products = products;
+    })
+
+  }
+
+  addToCart(product: IProduct) {
+    this.cartService.add(product);
   }
 
   getFilteredProduct() {
