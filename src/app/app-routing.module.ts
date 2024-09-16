@@ -7,7 +7,7 @@ import { CartComponent } from './cart/cart.component';
 //routes array
 const routes : Routes =[
   {path:'home',component:HomeComponent,title:"Home - joe's robot shop"},
-  {path:'catalog/:filter',component:CatalogComponent,title:"Catalog - joe's robot shop"},
+  {path:'catalog',component:CatalogComponent,title:"Catalog - joe's robot shop"},
   {path:'cart',component:CartComponent,title:"Cart- joe's robot shop"},
   {path:'', redirectTo : '/home',pathMatch:'full'}
 ];
